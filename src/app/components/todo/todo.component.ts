@@ -18,15 +18,7 @@ export class TodoComponent {
     this.editTodo = index;
     this.newTodo = this.todos[index];
   }
-  // onAdd() {
-  //   this.todos.push(this.newTodo);
-  //   this.newTodo = '';
-  // }
-  // onUpdate() {
-  //   this.todos[this.editTodo] = this.newTodo;
-  //   this.editTodo = null;
-  //   this.newTodo = '';
-  // }
+
 
   onAddOrUpdate() {
     if (this.editTodo === null) {
