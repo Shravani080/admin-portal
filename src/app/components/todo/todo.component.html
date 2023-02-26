@@ -1,0 +1,16 @@
+<div>
+    <input type="text" [(ngModel)]="newTodo">
+    {{newTodo}}
+    <!-- <button (click)="onAdd()">Add</button>
+    <button (click)="onUpdate()">Update</button> -->
+    <button (click)="onAddOrUpdate()">
+      {{ editTodo === null ? 'Add' : 'Update' }}
+    </button>
+    <ul>
+      <li *ngFor="let todo of todos; let i = index">
+        {{ todo }}
+        <button (click)="onDelete(i)">Delete</button>
+        <button (click)="onEdit(i)">Edit</button>
+      </li>
+    </ul>
+  </div>

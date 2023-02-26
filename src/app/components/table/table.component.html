@@ -1,0 +1,40 @@
+<div>
+    <div>
+        <form>
+            <label>Name:</label>
+            <input type="text" [(ngModel)]="newRow.Name" name="Name" required>
+            <label>Age:</label>
+            <input type="number" [(ngModel)]="newRow.Age" name="Age" required>
+            <label>Gender:</label>
+            <input type="text" [(ngModel)]="newRow.Gender" name="Gender" required>
+            <button (click)="onAddRow()">Add</button>
+            
+        </form>
+    </div>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th *ngFor="let column of headers">
+                        {{column}}
+                    </th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of rows; let i = index">
+                    <td *ngFor="let column of headers">
+                        {{row[column]}}
+                    </td>
+                    <td>
+                        <button (click)="onEditRow(row)">Edit</button>
+                    </td>
+                    <td>
+                        <button (click)="onDeleteRow(row)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
