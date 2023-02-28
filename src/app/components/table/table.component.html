@@ -7,8 +7,10 @@
             <input type="number" [(ngModel)]="newRow.Age" name="Age" required>
             <label>Gender:</label>
             <input type="text" [(ngModel)]="newRow.Gender" name="Gender" required>
-            <button (click)="onAddRow()">Add</button>
-            
+            <button (click)="onAddOrUpdateRow()">
+                {{ isEditing ? 'Update' : 'Add' }} 
+            </button>
+
         </form>
     </div>
     <div>
