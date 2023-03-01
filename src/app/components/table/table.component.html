@@ -8,7 +8,7 @@
             <label>Gender:</label>
             <input type="text" [(ngModel)]="newRow.Gender" name="Gender" required>
             <button (click)="onAddOrUpdateRow()">
-                {{ isEditing ? 'Update' : 'Add' }} 
+                {{ editedIndex > -1 ? 'Update' : 'Add' }}
             </button>
 
         </form>
@@ -30,10 +30,10 @@
                         {{row[column]}}
                     </td>
                     <td>
-                        <button (click)="onEditRow(row)">Edit</button>
+                        <button (click)="onEditRow(row, i)">Edit</button>
                     </td>
                     <td>
-                        <button (click)="onDeleteRow(row)">Delete</button>
+                        <button (click)="onDeleteRow(i)">Delete</button>
                     </td>
                 </tr>
             </tbody>

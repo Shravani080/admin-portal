@@ -5,14 +5,12 @@ import { Component } from '@angular/core';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })
-
 export class TableComponent {
   title: string = 'custom-table';
 
   headers: any = ['Id', 'Name', 'Age', 'Gender'];
   newRow: any = { Name: '', Age: null, Gender: '' };
-  editRow: any = "";
-  isEditing: boolean = false;
+  editedIndex: number = -1;
 
   rows: any = [
     { Id: 1, Name: 'Shravni', Age: 22, Gender: 'female' },
@@ -26,22 +24,17 @@ export class TableComponent {
     this.rows.splice(index, 1);
   }
 
-  onEditRow(row: any) {
-    this.editRow={...row};
+  onEditRow(row: any, i: number) {
+    this.editedIndex = i;
     this.newRow = { ...row };
-    this.isEditing = true;
   }
-  
-  onAddOrUpdateRow() { 
-    if (this.isEditing) {
-      const index = this.rows.findIndex((row: any) => row.Id === this.editRow.Id);
-      if (index !== -1) {
-        this.rows[index].Name = this.newRow.Name;
-        this.rows[index].Age = this.newRow.Age;
-        this.rows[index].Gender = this.newRow.Gender;
-      }
-      this.editRow = "";
-      this.isEditing = false;
+
+  onAddOrUpdateRow() {
+    if (this.editedIndex > -1) {
+      this.rows[this.editedIndex].Name = this.newRow.Name;
+      this.rows[this.editedIndex].Age = this.newRow.Age;
+      this.rows[this.editedIndex].Gender = this.newRow.Gender;
+      this.editedIndex = -1;
     } else {
       const Id = this.rows.length + 1;
       const newRow = {
@@ -51,8 +44,7 @@ export class TableComponent {
         Gender: this.newRow.Gender,
       };
       this.rows.push(newRow);
-      this.newRow = { Name: '', Age: null, Gender: '' };
     }
+    this.newRow = { Name: '', Age: null, Gender: '' };
   }
-
 }
